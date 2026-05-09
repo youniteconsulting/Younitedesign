@@ -33,20 +33,25 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 40px;
-    padding: 40px 0;
+    gap: 24px;
+    padding: 24px 0;
+  }
+  .slide-wrapper {
+    width: min(100vw - 24px, 1920px);
+    aspect-ratio: 16 / 9;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+    border-radius: 4px;
   }
   .slide {
     width: 1920px;
     height: 1080px;
-    position: relative;
-    overflow: hidden;
-    transform-origin: top center;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
-  }
-  /* Scale to fit viewport while preserving 16:9 */
-  @media (max-width: 1980px) {
-    .slide { transform: scale(calc(100vw / 1920 * 0.92)); margin-bottom: calc(-1080px + (1080px * (100vw / 1920 * 0.92))); }
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform-origin: top left;
+    transform: scale(calc(min(100vw - 24px, 1920px) / 1920));
   }
 
   .slide-inner {
@@ -423,7 +428,7 @@
 <div class="deck">
 
   <!-- ===================== SLIDE 1 — HERO ===================== -->
-  <section class="slide s1">
+  <div class="slide-wrapper"><section class="slide s1">
     <div class="slide-inner">
       <div class="meta">Capability Overview · 2026</div>
       <div class="eyebrow">Younite Consulting</div>
@@ -432,10 +437,10 @@
     </div>
     <div class="logo"><span class="logo-mark"></span>Younite</div>
     <div class="slide-num">01 / 06</div>
-  </section>
+  </section></div>
 
   <!-- ===================== SLIDE 2 — APPROACH ===================== -->
-  <section class="slide s2">
+  <div class="slide-wrapper"><section class="slide s2">
     <div class="slide-inner">
       <div class="quote-mark">"</div>
       <div class="label-tag">Our Approach</div>
@@ -444,10 +449,10 @@
     </div>
     <div class="logo"><span class="logo-mark"></span>Younite</div>
     <div class="slide-num">02 / 06</div>
-  </section>
+  </section></div>
 
   <!-- ===================== SLIDE 3 — SERVICES ===================== -->
-  <section class="slide s3">
+  <div class="slide-wrapper"><section class="slide s3">
     <div class="slide-inner">
       <div class="label-tag">What We Do</div>
       <h2>Three practices, one philosophy.</h2>
@@ -471,10 +476,10 @@
     </div>
     <div class="logo"><span class="logo-mark"></span>Younite</div>
     <div class="slide-num">03 / 06</div>
-  </section>
+  </section></div>
 
   <!-- ===================== SLIDE 4 — METHODOLOGY ===================== -->
-  <section class="slide s4">
+  <div class="slide-wrapper"><section class="slide s4">
     <div class="slide-inner">
       <div class="label-tag">Methodology</div>
       <h2>How an engagement unfolds.</h2>
@@ -503,10 +508,10 @@
     </div>
     <div class="logo"><span class="logo-mark"></span>Younite</div>
     <div class="slide-num">04 / 06</div>
-  </section>
+  </section></div>
 
   <!-- ===================== SLIDE 5 — PROOF (dark) ===================== -->
-  <section class="slide s5 slide-dark">
+  <div class="slide-wrapper"><section class="slide s5 slide-dark">
     <div class="slide-inner">
       <div class="label-tag">By the Numbers</div>
       <h2>Two decades of Swiss practice, measured in outcomes.</h2>
@@ -527,10 +532,10 @@
     </div>
     <div class="logo logo-dark"><span class="logo-mark"></span>Younite</div>
     <div class="slide-num">05 / 06</div>
-  </section>
+  </section></div>
 
   <!-- ===================== SLIDE 6 — CTA ===================== -->
-  <section class="slide s6">
+  <div class="slide-wrapper"><section class="slide s6">
     <div class="slide-inner">
       <div class="label-tag">Let's Talk</div>
       <h2>Tell us what's on your team's mind.</h2>
@@ -552,7 +557,7 @@
     </div>
     <div class="logo"><span class="logo-mark"></span>Younite</div>
     <div class="slide-num">06 / 06</div>
-  </section>
+  </section></div>
 
 </div>
 </body>
