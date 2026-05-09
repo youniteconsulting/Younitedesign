@@ -5,28 +5,33 @@
 <title>Younite Consulting — Sample Deck</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #ffffff;
-    --bg-warm: #f5f1ec;
-    --heading: #061b31;
-    --label: #273951;
-    --body: #64748d;
-    --accent: #533afd;
-    --accent-hover: #4434d4;
-    --accent-soft: #b9b9f9;
-    --border: #e5edf5;
-    --brand-dark: #1c1e54;
-    --shadow-elevated: rgba(50,50,93,0.25) 0px 30px 45px -30px, rgba(0,0,0,0.1) 0px 18px 36px -18px;
-    --shadow-ambient: rgba(23,23,23,0.08) 0px 15px 35px 0px;
+    /* Airbnb system tokens */
+    --canvas: #ffffff;
+    --surface-soft: #f7f7f7;
+    --surface-strong: #f2f2f2;
+    --ink: #222222;
+    --body: #3f3f3f;
+    --muted: #6a6a6a;
+    --muted-soft: #929292;
+    --hairline: #dddddd;
+    --hairline-soft: #ebebeb;
+    --rausch: #ff385c;
+    --rausch-active: #e00b41;
+    /* Photo placeholder tones — warm, on-brand for HR consulting */
+    --photo-warm-1: linear-gradient(135deg, #e8d5c4 0%, #c9a98a 60%, #a8866a 100%);
+    --photo-warm-2: linear-gradient(135deg, #d4d8c8 0%, #a8b09a 60%, #7d8770 100%);
+    --photo-warm-3: linear-gradient(135deg, #e6d5cc 0%, #c4a89c 60%, #9a7c70 100%);
+    --photo-warm-4: linear-gradient(135deg, #ddd2c6 0%, #b8a896 60%, #8c7c6a 100%);
+    --shadow-card: rgba(0,0,0,0.02) 0 0 0 1px, rgba(0,0,0,0.04) 0 2px 6px 0, rgba(0,0,0,0.1) 0 4px 8px 0;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html, body {
     background: #2a2a2e;
-    font-family: 'Inter', 'SF Pro Display', -apple-system, sans-serif;
-    font-feature-settings: "ss01";
-    color: var(--heading);
+    font-family: 'Inter', 'Airbnb Cereal VF', Circular, -apple-system, system-ui, sans-serif;
+    color: var(--ink);
     -webkit-font-smoothing: antialiased;
   }
   .deck {
@@ -42,8 +47,7 @@
     position: relative;
     overflow: hidden;
     box-shadow: 0 20px 60px rgba(0,0,0,0.4);
-    border-radius: 4px;
-    /* height set by JS */
+    border-radius: 14px;
   }
   .slide {
     width: 1920px;
@@ -52,375 +56,505 @@
     top: 0;
     left: 0;
     transform-origin: top left;
-    /* transform set by JS */
   }
-
   .slide-inner {
     position: absolute;
     inset: 0;
-    padding: 96px;  /* 5% safe-zone */
+    padding: 96px;
   }
 
-  /* === LOGO (every slide, bottom-left, ~24px tall, in safe-zone) === */
+  /* === LOGO (every slide) === */
   .logo {
     position: absolute;
     bottom: 96px;
     left: 96px;
     display: flex;
     align-items: center;
-    gap: 8px;
-    font-size: 16px;
-    font-weight: 500;
-    letter-spacing: -0.16px;
-    color: var(--heading);
+    gap: 10px;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--ink);
+    letter-spacing: -0.2px;
   }
   .logo-mark {
-    width: 24px;
-    height: 24px;
-    background: var(--accent);
-    border-radius: 6px;
+    width: 28px;
+    height: 28px;
+    background: var(--rausch);
+    border-radius: 9999px;
     position: relative;
+    flex-shrink: 0;
   }
   .logo-mark::after {
     content: '';
     position: absolute;
-    inset: 6px;
-    border: 2px solid #fff;
-    border-radius: 2px;
-    border-bottom: none;
-    border-right: none;
+    inset: 7px;
+    background: #fff;
+    border-radius: 9999px;
   }
-  .logo-dark { color: rgba(255,255,255,0.9); }
-  .logo-dark .logo-mark { background: #fff; }
-  .logo-dark .logo-mark::after { border-color: var(--brand-dark); }
+  .logo-light { color: #fff; }
 
   .slide-num {
     position: absolute;
-    bottom: 96px;
+    bottom: 100px;
     right: 96px;
     font-size: 13px;
-    font-weight: 400;
-    color: var(--body);
-    letter-spacing: 0.4px;
+    font-weight: 500;
+    color: var(--muted);
+    letter-spacing: 0.32px;
+    text-transform: uppercase;
     font-variant-numeric: tabular-nums;
   }
-  .slide-dark .slide-num { color: rgba(255,255,255,0.5); }
+
+  /* Eyebrow tag — used on most slides */
+  .eyebrow {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.32px;
+    text-transform: uppercase;
+    color: var(--rausch);
+    margin-bottom: 32px;
+  }
 
   /* ============ SLIDE 1: HERO ============ */
-  .s1 { background: var(--bg); }
-  .s1 .slide-inner { display: flex; flex-direction: column; justify-content: center; }
-  .s1 .eyebrow {
-    font-size: 18px;
-    font-weight: 400;
-    color: var(--accent);
-    letter-spacing: 0.4px;
-    margin-bottom: 32px;
-    text-transform: uppercase;
+  .s1 { background: var(--canvas); }
+  .s1 .slide-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
   }
-  .s1 h1 {
-    font-size: 96px;
-    font-weight: 300;
-    line-height: 1.05;
-    letter-spacing: -2.4px;
-    color: var(--heading);
-    max-width: 1280px;
-  }
-  .s1 .lead {
-    font-size: 26px;
-    font-weight: 300;
-    line-height: 1.4;
-    color: var(--body);
-    margin-top: 48px;
-    max-width: 720px;
-  }
-  .s1 .meta {
-    position: absolute;
-    top: 96px;
-    right: 96px;
+  .s1 .copy { padding-right: 32px; }
+  .s1 .meta-line {
     font-size: 14px;
-    color: var(--body);
+    font-weight: 500;
+    color: var(--muted);
+    margin-bottom: 24px;
     letter-spacing: 0.2px;
     font-variant-numeric: tabular-nums;
   }
-
-  /* ============ SLIDE 2: APPROACH ============ */
-  .s2 { background: var(--bg-warm); }
-  .s2 h2 {
-    font-size: 56px;
-    font-weight: 300;
-    line-height: 1.1;
-    letter-spacing: -1.4px;
-    color: var(--heading);
-    max-width: 960px;
-  }
-  .s2 .body-lead {
-    font-size: 24px;
-    font-weight: 300;
-    line-height: 1.5;
-    color: var(--body);
-    margin-top: 48px;
-    max-width: 720px;
-  }
-  .s2 .quote-mark {
-    font-size: 200px;
-    line-height: 1;
-    color: var(--accent);
-    font-weight: 300;
-    position: absolute;
-    top: 96px;
-    right: 192px;
-    opacity: 0.18;
-    font-family: Georgia, serif;
-  }
-  .s2 .label-tag {
-    display: inline-block;
-    font-size: 13px;
-    font-weight: 500;
-    letter-spacing: 0.6px;
-    text-transform: uppercase;
-    color: var(--accent);
+  .s1 h1 {
+    font-size: 64px;
+    font-weight: 600;
+    line-height: 1.08;
+    letter-spacing: -1.2px;
+    color: var(--ink);
     margin-bottom: 32px;
   }
-
-  /* ============ SLIDE 3: SERVICES (3 cards) ============ */
-  .s3 { background: var(--bg); }
-  .s3 .label-tag {
-    display: inline-block;
-    font-size: 13px;
-    font-weight: 500;
-    letter-spacing: 0.6px;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 24px;
+  .s1 .lead {
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--body);
+    max-width: 520px;
   }
-  .s3 h2 {
+  .s1 .photo {
+    width: 100%;
+    height: 720px;
+    background: var(--photo-warm-1);
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .s1 .photo::before {
+    /* simulated photographic atmosphere */
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 30% 25%, rgba(255,240,220,0.5) 0%, transparent 45%),
+      radial-gradient(ellipse at 70% 75%, rgba(60,40,30,0.3) 0%, transparent 50%);
+  }
+  .s1 .photo-caption {
+    position: absolute;
+    bottom: 24px;
+    left: 24px;
+    background: rgba(255,255,255,0.92);
+    color: var(--ink);
+    padding: 6px 14px;
+    border-radius: 9999px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1px;
+    box-shadow: var(--shadow-card);
+  }
+
+  /* ============ SLIDE 2: APPROACH ============ */
+  .s2 { background: var(--canvas); }
+  .s2 .slide-inner {
+    display: grid;
+    grid-template-columns: 5fr 4fr;
+    gap: 80px;
+    align-items: center;
+  }
+  .s2 h2 {
     font-size: 56px;
-    font-weight: 300;
+    font-weight: 600;
     line-height: 1.1;
-    letter-spacing: -1.4px;
-    color: var(--heading);
-    max-width: 960px;
+    letter-spacing: -1px;
+    color: var(--ink);
+    margin-bottom: 32px;
+  }
+  .s2 .lead {
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1.55;
+    color: var(--body);
+    max-width: 560px;
+  }
+  .s2 .lead + .lead { margin-top: 24px; }
+  .s2 .photo {
+    width: 100%;
+    height: 600px;
+    background: var(--photo-warm-2);
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .s2 .photo::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 65% 30%, rgba(255,250,235,0.45) 0%, transparent 50%),
+      radial-gradient(ellipse at 25% 80%, rgba(40,55,40,0.35) 0%, transparent 55%);
+  }
+  .s2 .photo-caption {
+    position: absolute;
+    bottom: 24px;
+    left: 24px;
+    background: rgba(255,255,255,0.92);
+    padding: 6px 14px;
+    border-radius: 9999px;
+    font-size: 12px;
+    font-weight: 600;
+    box-shadow: var(--shadow-card);
+  }
+
+  /* ============ SLIDE 3: SERVICES ============ */
+  .s3 { background: var(--canvas); }
+  .s3 .heading-block { max-width: 1100px; margin-bottom: 64px; }
+  .s3 h2 {
+    font-size: 48px;
+    font-weight: 600;
+    line-height: 1.1;
+    letter-spacing: -0.8px;
+    color: var(--ink);
+    margin-bottom: 16px;
+  }
+  .s3 .sub {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--muted);
+    max-width: 640px;
   }
   .s3 .grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 32px;
-    margin-top: 80px;
+    gap: 24px;
   }
   .s3 .card {
-    background: #fff;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 48px;
-    box-shadow: var(--shadow-ambient);
+    background: var(--canvas);
+    border-radius: 20px;
+    overflow: hidden;
   }
-  .s3 .card-icon {
-    width: 48px;
-    height: 48px;
-    background: rgba(83,58,253,0.1);
-    border-radius: 6px;
-    margin-bottom: 32px;
+  .s3 .card-photo {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    border-radius: 14px;
+    margin-bottom: 16px;
     position: relative;
+    overflow: hidden;
   }
-  .s3 .card-icon::after {
+  .s3 .card-photo.p1 { background: var(--photo-warm-1); }
+  .s3 .card-photo.p2 { background: var(--photo-warm-2); }
+  .s3 .card-photo.p3 { background: var(--photo-warm-3); }
+  .s3 .card-photo::before {
     content: '';
     position: absolute;
-    inset: 14px;
-    border: 2px solid var(--accent);
-    border-radius: 2px;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 40% 30%, rgba(255,245,225,0.45) 0%, transparent 50%),
+      radial-gradient(ellipse at 70% 75%, rgba(40,30,25,0.3) 0%, transparent 55%);
   }
-  .s3 .card-icon-2::after { border-radius: 50%; }
-  .s3 .card-icon-3::after { transform: rotate(45deg); }
+  .s3 .badge {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    background: #fff;
+    padding: 4px 12px;
+    border-radius: 9999px;
+    font-size: 11px;
+    font-weight: 600;
+    box-shadow: var(--shadow-card);
+  }
   .s3 .card h3 {
-    font-size: 26px;
-    font-weight: 300;
-    line-height: 1.15;
-    letter-spacing: -0.26px;
-    color: var(--heading);
-    margin-bottom: 16px;
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.3px;
+    color: var(--ink);
+    margin-bottom: 8px;
   }
-  .s3 .card p {
-    font-size: 18px;
-    font-weight: 300;
+  .s3 .card .meta {
+    font-size: 16px;
+    font-weight: 400;
     line-height: 1.5;
-    color: var(--body);
+    color: var(--muted);
+    margin-bottom: 12px;
+  }
+  .s3 .card .price {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--ink);
   }
 
   /* ============ SLIDE 4: METHODOLOGY ============ */
-  .s4 { background: var(--bg); }
-  .s4 .label-tag {
-    display: inline-block;
-    font-size: 13px;
-    font-weight: 500;
-    letter-spacing: 0.6px;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 24px;
-  }
+  .s4 { background: var(--surface-soft); }
+  .s4 .heading-block { max-width: 1100px; margin-bottom: 64px; }
   .s4 h2 {
-    font-size: 56px;
-    font-weight: 300;
+    font-size: 48px;
+    font-weight: 600;
     line-height: 1.1;
-    letter-spacing: -1.4px;
-    color: var(--heading);
-    max-width: 1100px;
+    letter-spacing: -0.8px;
+    color: var(--ink);
+    margin-bottom: 16px;
   }
-  .s4 .steps {
+  .s4 .sub {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--muted);
+    max-width: 640px;
+  }
+  .s4 .timeline {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 32px;
-    margin-top: 96px;
+    position: relative;
   }
-  .s4 .step .step-num {
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--accent);
-    letter-spacing: 0.6px;
-    margin-bottom: 24px;
-    font-variant-numeric: tabular-nums;
-    padding-bottom: 16px;
-    border-top: 1px solid var(--accent);
-    padding-top: 16px;
+  .s4 .timeline::before {
+    content: '';
+    position: absolute;
+    top: 24px;
+    left: 24px;
+    right: 24px;
+    height: 1px;
+    background: var(--hairline);
+  }
+  .s4 .step { position: relative; }
+  .s4 .step-dot {
+    width: 48px;
+    height: 48px;
+    border-radius: 9999px;
+    background: var(--canvas);
+    border: 2px solid var(--ink);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 32px;
+    position: relative;
+    z-index: 1;
+  }
+  .s4 .step:first-child .step-dot {
+    background: var(--ink);
+    color: #fff;
   }
   .s4 .step h4 {
     font-size: 22px;
-    font-weight: 300;
-    line-height: 1.15;
-    letter-spacing: -0.22px;
-    color: var(--heading);
-    margin-bottom: 16px;
+    font-weight: 600;
+    line-height: 1.25;
+    letter-spacing: -0.2px;
+    color: var(--ink);
+    margin-bottom: 12px;
   }
   .s4 .step p {
     font-size: 16px;
-    font-weight: 300;
+    font-weight: 400;
     line-height: 1.5;
-    color: var(--body);
+    color: var(--muted);
   }
 
-  /* ============ SLIDE 5: PROOF (dark brand section) ============ */
-  .s5 { background: var(--brand-dark); color: #fff; }
-  .s5 .label-tag {
-    display: inline-block;
-    font-size: 13px;
-    font-weight: 500;
-    letter-spacing: 0.6px;
-    text-transform: uppercase;
-    color: var(--accent-soft);
-    margin-bottom: 24px;
-  }
-  .s5 h2 {
-    font-size: 56px;
-    font-weight: 300;
-    line-height: 1.1;
-    letter-spacing: -1.4px;
-    color: #fff;
-    max-width: 1100px;
-  }
-  .s5 .stats {
+  /* ============ SLIDE 5: TESTIMONIAL / PROOF ============ */
+  .s5 { background: var(--canvas); }
+  .s5 .slide-inner {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 64px;
-    margin-top: 96px;
+    grid-template-columns: 4fr 5fr;
+    gap: 80px;
+    align-items: center;
   }
-  .s5 .stat {
-    border-top: 1px solid rgba(255,255,255,0.18);
-    padding-top: 32px;
+  .s5 .rating-block {
+    text-align: center;
+    padding: 48px 32px;
+    border-right: 1px solid var(--hairline);
+    border-left: 1px solid var(--hairline);
   }
-  .s5 .stat-num {
+  .s5 .rating-num {
     font-size: 96px;
-    font-weight: 300;
+    font-weight: 700;
     line-height: 1;
-    letter-spacing: -2.4px;
-    color: #fff;
+    letter-spacing: -2px;
+    color: var(--ink);
+    margin-bottom: 16px;
     font-variant-numeric: tabular-nums;
-    margin-bottom: 24px;
   }
-  .s5 .stat-num .unit { color: var(--accent-soft); }
-  .s5 .stat-label {
+  .s5 .rating-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 32px;
+  }
+  .s5 .rating-row {
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid var(--hairline);
+    padding-top: 24px;
+  }
+  .s5 .rating-row .stat-num {
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 4px;
+    font-variant-numeric: tabular-nums;
+  }
+  .s5 .rating-row .stat-label {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--muted);
+    letter-spacing: 0.1px;
+  }
+  .s5 .reviews {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px 48px;
+  }
+  .s5 .review .review-text {
     font-size: 18px;
-    font-weight: 300;
+    font-weight: 400;
     line-height: 1.5;
-    color: rgba(255,255,255,0.7);
-    max-width: 320px;
+    color: var(--ink);
+    margin-bottom: 20px;
+  }
+  .s5 .review .author { display: flex; align-items: center; gap: 12px; }
+  .s5 .avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 9999px;
+    flex-shrink: 0;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .s5 .avatar.a1 { background: linear-gradient(135deg, #c9a98a, #a8866a); }
+  .s5 .avatar.a2 { background: linear-gradient(135deg, #a8b09a, #7d8770); }
+  .s5 .avatar.a3 { background: linear-gradient(135deg, #c4a89c, #9a7c70); }
+  .s5 .avatar.a4 { background: linear-gradient(135deg, #b8a896, #8c7c6a); }
+  .s5 .author-info .name {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .s5 .author-info .role {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--muted);
   }
 
   /* ============ SLIDE 6: CTA ============ */
-  .s6 { background: var(--bg); }
+  .s6 { background: var(--canvas); }
   .s6 .slide-inner {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-  .s6 .label-tag {
-    font-size: 13px;
-    font-weight: 500;
-    letter-spacing: 0.6px;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 32px;
+    display: grid;
+    grid-template-columns: 5fr 4fr;
+    gap: 80px;
+    align-items: center;
   }
   .s6 h2 {
-    font-size: 80px;
-    font-weight: 300;
-    line-height: 1.05;
-    letter-spacing: -2px;
-    color: var(--heading);
-    max-width: 1280px;
+    font-size: 64px;
+    font-weight: 600;
+    line-height: 1.08;
+    letter-spacing: -1.2px;
+    color: var(--ink);
+    margin-bottom: 32px;
   }
   .s6 .lead {
-    font-size: 24px;
-    font-weight: 300;
-    line-height: 1.5;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1.55;
     color: var(--body);
-    margin-top: 40px;
-    max-width: 720px;
+    max-width: 540px;
+    margin-bottom: 48px;
   }
-  .s6 .cta-row {
-    display: flex;
-    gap: 16px;
-    margin-top: 64px;
-  }
+  .s6 .btn-row { display: flex; gap: 16px; margin-bottom: 64px; }
   .s6 .btn {
     font-family: inherit;
     font-size: 16px;
-    font-weight: 400;
-    padding: 16px 24px;
-    border-radius: 4px;
-    border: 1px solid transparent;
+    font-weight: 500;
+    padding: 14px 24px;
+    border-radius: 8px;
+    border: none;
     cursor: pointer;
-    letter-spacing: 0;
+    height: 48px;
   }
   .s6 .btn-primary {
-    background: var(--accent);
+    background: var(--rausch);
     color: #fff;
   }
-  .s6 .btn-ghost {
-    background: transparent;
-    color: var(--accent);
-    border-color: var(--accent-soft);
+  .s6 .btn-secondary {
+    background: var(--canvas);
+    color: var(--ink);
+    border: 1px solid var(--ink);
   }
-  .s6 .contact {
-    margin-top: 96px;
+  .s6 .contact-block {
     display: flex;
-    gap: 64px;
+    gap: 48px;
+    padding-top: 32px;
+    border-top: 1px solid var(--hairline);
   }
-  .s6 .contact-item {
-    border-top: 1px solid var(--border);
-    padding-top: 16px;
-    min-width: 240px;
-  }
-  .s6 .contact-label {
+  .s6 .contact-item .label {
     font-size: 13px;
-    font-weight: 500;
-    color: var(--body);
-    letter-spacing: 0.4px;
+    font-weight: 700;
+    letter-spacing: 0.32px;
     text-transform: uppercase;
-    margin-bottom: 8px;
+    color: var(--muted);
+    margin-bottom: 6px;
   }
-  .s6 .contact-value {
+  .s6 .contact-item .value {
     font-size: 18px;
-    font-weight: 400;
-    color: var(--heading);
+    font-weight: 500;
+    color: var(--ink);
+  }
+  .s6 .photo {
+    width: 100%;
+    height: 720px;
+    background: var(--photo-warm-4);
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .s6 .photo::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 35% 30%, rgba(255,245,225,0.45) 0%, transparent 50%),
+      radial-gradient(ellipse at 70% 80%, rgba(45,35,30,0.3) 0%, transparent 55%);
+  }
+  .s6 .photo-caption {
+    position: absolute;
+    bottom: 24px;
+    left: 24px;
+    background: rgba(255,255,255,0.92);
+    padding: 6px 14px;
+    border-radius: 9999px;
+    font-size: 12px;
+    font-weight: 600;
+    box-shadow: var(--shadow-card);
   }
 
 </style>
@@ -428,50 +562,65 @@
 <body>
 <div class="deck">
 
-  <!-- ===================== SLIDE 1 — HERO ===================== -->
+  <!-- ============== SLIDE 1: HERO ============== -->
   <div class="slide-wrapper"><section class="slide s1">
     <div class="slide-inner">
-      <div class="meta">Capability Overview · 2026</div>
-      <div class="eyebrow">Younite Consulting</div>
-      <h1>Swiss HR &amp; training, designed for the people who do the work.</h1>
-      <p class="lead">A boutique consultancy helping mid-sized organisations across Switzerland recruit, develop, and retain the people who matter.</p>
+      <div class="copy">
+        <div class="meta-line">Younite Consulting · Capability Overview · 2026</div>
+        <h1>HR &amp; training, designed for the people who do the work.</h1>
+        <p class="lead">A Swiss boutique consultancy helping organisations recruit, develop, and retain the people who matter — with genuine partnership, not transactional advice.</p>
+      </div>
+      <div class="photo">
+        <div class="photo-caption">Workshop — Zürich</div>
+      </div>
     </div>
     <div class="logo"><span class="logo-mark"></span>Younite</div>
     <div class="slide-num">01 / 06</div>
   </section></div>
 
-  <!-- ===================== SLIDE 2 — APPROACH ===================== -->
+  <!-- ============== SLIDE 2: APPROACH ============== -->
   <div class="slide-wrapper"><section class="slide s2">
     <div class="slide-inner">
-      <div class="quote-mark">"</div>
-      <div class="label-tag">Our Approach</div>
-      <h2>People decisions deserve the same rigour as financial ones.</h2>
-      <p class="body-lead">We bring structured methods, Swiss precision, and twenty years of practitioner experience to every engagement — from a single workshop to a full HR transformation.</p>
+      <div>
+        <div class="eyebrow">Our Approach</div>
+        <h2>Echte Begegnung auf Augenhöhe.</h2>
+        <p class="lead">We bring structured methods, Swiss precision, and twenty years of practitioner experience to every engagement.</p>
+        <p class="lead">From a single workshop to a full HR transformation — same care, same craft.</p>
+      </div>
+      <div class="photo">
+        <div class="photo-caption">Coaching session</div>
+      </div>
     </div>
     <div class="logo"><span class="logo-mark"></span>Younite</div>
     <div class="slide-num">02 / 06</div>
   </section></div>
 
-  <!-- ===================== SLIDE 3 — SERVICES ===================== -->
+  <!-- ============== SLIDE 3: SERVICES ============== -->
   <div class="slide-wrapper"><section class="slide s3">
     <div class="slide-inner">
-      <div class="label-tag">What We Do</div>
-      <h2>Three practices, one philosophy.</h2>
+      <div class="heading-block">
+        <div class="eyebrow">What We Do</div>
+        <h2>Three practices, one philosophy.</h2>
+        <p class="sub">Every engagement is co-designed with you — never imposed from above.</p>
+      </div>
       <div class="grid">
         <div class="card">
-          <div class="card-icon"></div>
-          <h3>HR Consulting</h3>
-          <p>Org design, compensation strategy, and operating-model reviews tailored to Swiss employment law and culture.</p>
+          <div class="card-photo p1"><div class="badge">★ Most requested</div></div>
+          <h3>Leadership training</h3>
+          <p class="meta">Programmes for first-time managers through executive teams · DE / FR / IT / EN</p>
+          <div class="price">From 2 days · onsite or virtual</div>
         </div>
         <div class="card">
-          <div class="card-icon card-icon-2"></div>
-          <h3>Leadership Training</h3>
-          <p>Programmes for first-time managers through executive teams, delivered in DE, FR, IT, and EN.</p>
+          <div class="card-photo p2"><div class="badge">★ Long-term partnership</div></div>
+          <h3>HR consulting</h3>
+          <p class="meta">Org design, compensation strategy, and operating-model reviews tailored to Swiss employment law</p>
+          <div class="price">Engagement-based</div>
         </div>
         <div class="card">
-          <div class="card-icon card-icon-3"></div>
-          <h3>Talent &amp; Coaching</h3>
-          <p>Individual coaching, succession planning, and assessment supporting careers at every level.</p>
+          <div class="card-photo p3"><div class="badge">★ One-to-one</div></div>
+          <h3>Talent &amp; coaching</h3>
+          <p class="meta">Individual coaching, succession planning, and assessment supporting careers at every level</p>
+          <div class="price">From 6-session programmes</div>
         </div>
       </div>
     </div>
@@ -479,29 +628,32 @@
     <div class="slide-num">03 / 06</div>
   </section></div>
 
-  <!-- ===================== SLIDE 4 — METHODOLOGY ===================== -->
+  <!-- ============== SLIDE 4: METHODOLOGY ============== -->
   <div class="slide-wrapper"><section class="slide s4">
     <div class="slide-inner">
-      <div class="label-tag">Methodology</div>
-      <h2>How an engagement unfolds.</h2>
-      <div class="steps">
+      <div class="heading-block">
+        <div class="eyebrow">Methodology</div>
+        <h2>How an engagement unfolds.</h2>
+        <p class="sub">Four steps, weeks not months. We move fast because your team can't wait.</p>
+      </div>
+      <div class="timeline">
         <div class="step">
-          <div class="step-num">01 · DISCOVER</div>
+          <div class="step-dot">1</div>
           <h4>Listen first</h4>
           <p>Stakeholder interviews, data review, and a clear-eyed read on the current state.</p>
         </div>
         <div class="step">
-          <div class="step-num">02 · DEFINE</div>
+          <div class="step-dot">2</div>
           <h4>Frame the problem</h4>
           <p>One-page diagnostic with the questions that actually matter — not the symptoms.</p>
         </div>
         <div class="step">
-          <div class="step-num">03 · DELIVER</div>
+          <div class="step-dot">3</div>
           <h4>Build with you</h4>
           <p>Workshops, training, or advisory work — co-created, never imposed from above.</p>
         </div>
         <div class="step">
-          <div class="step-num">04 · EMBED</div>
+          <div class="step-dot">4</div>
           <h4>Make it stick</h4>
           <p>Follow-through with line managers so change outlasts the engagement.</p>
         </div>
@@ -511,49 +663,98 @@
     <div class="slide-num">04 / 06</div>
   </section></div>
 
-  <!-- ===================== SLIDE 5 — PROOF (dark) ===================== -->
-  <div class="slide-wrapper"><section class="slide s5 slide-dark">
+  <!-- ============== SLIDE 5: TESTIMONIALS ============== -->
+  <div class="slide-wrapper"><section class="slide s5">
     <div class="slide-inner">
-      <div class="label-tag">By the Numbers</div>
-      <h2>Two decades of Swiss practice, measured in outcomes.</h2>
-      <div class="stats">
-        <div class="stat">
-          <div class="stat-num">120<span class="unit">+</span></div>
-          <div class="stat-label">Organisations supported across the DACH region</div>
+      <div class="rating-block">
+        <div class="rating-num">4.9</div>
+        <div class="rating-label">★ Guest favourite</div>
+        <div class="rating-row">
+          <div>
+            <div class="stat-num">120+</div>
+            <div class="stat-label">Organisations</div>
+          </div>
+          <div>
+            <div class="stat-num">94%</div>
+            <div class="stat-label">Apply within 30 days</div>
+          </div>
         </div>
-        <div class="stat">
-          <div class="stat-num">94<span class="unit">%</span></div>
-          <div class="stat-label">Of training participants apply learning within 30 days</div>
+      </div>
+      <div class="reviews">
+        <div class="review">
+          <p class="review-text">"They listened before they prescribed. The team came away with tools they actually use — six months later."</p>
+          <div class="author">
+            <div class="avatar a1">MK</div>
+            <div class="author-info">
+              <div class="name">Maria Keller</div>
+              <div class="role">CHRO · Manufacturing, 800 FTE</div>
+            </div>
+          </div>
         </div>
-        <div class="stat">
-          <div class="stat-num">4<span class="unit"> langs</span></div>
-          <div class="stat-label">Delivery in DE, FR, IT, and EN — across all 26 cantons</div>
+        <div class="review">
+          <p class="review-text">"Swiss precision with European warmth. Exactly the partner we needed for a sensitive restructuring."</p>
+          <div class="author">
+            <div class="avatar a2">DR</div>
+            <div class="author-info">
+              <div class="name">Daniel Rossi</div>
+              <div class="role">CEO · Financial services</div>
+            </div>
+          </div>
+        </div>
+        <div class="review">
+          <p class="review-text">"Our managers came in sceptical and left asking when the next module is. Rare for leadership training."</p>
+          <div class="author">
+            <div class="avatar a3">AM</div>
+            <div class="author-info">
+              <div class="name">Anne Müller</div>
+              <div class="role">Head of L&amp;D · Pharma</div>
+            </div>
+          </div>
+        </div>
+        <div class="review">
+          <p class="review-text">"They speak our language — literally and figuratively. Engagements feel collaborative, not transactional."</p>
+          <div class="author">
+            <div class="avatar a4">LB</div>
+            <div class="author-info">
+              <div class="name">Luca Bianchi</div>
+              <div class="role">COO · Tech scale-up</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-    <div class="logo logo-dark"><span class="logo-mark"></span>Younite</div>
+    <div class="logo"><span class="logo-mark"></span>Younite</div>
     <div class="slide-num">05 / 06</div>
   </section></div>
 
-  <!-- ===================== SLIDE 6 — CTA ===================== -->
+  <!-- ============== SLIDE 6: CTA ============== -->
   <div class="slide-wrapper"><section class="slide s6">
     <div class="slide-inner">
-      <div class="label-tag">Let's Talk</div>
-      <h2>Tell us what's on your team's mind.</h2>
-      <p class="lead">A 30-minute conversation, no slides, no obligation — just a clear read on whether we're the right partner for you.</p>
-      <div class="cta-row">
-        <button class="btn btn-primary">Book a conversation</button>
-        <button class="btn btn-ghost">Download capability deck</button>
+      <div>
+        <div class="eyebrow">Let's Talk</div>
+        <h2>Tell us what's on your team's mind.</h2>
+        <p class="lead">A 30-minute conversation, no slides, no obligation — just a clear read on whether we're the right partner for you.</p>
+        <div class="btn-row">
+          <button class="btn btn-primary">Book a conversation</button>
+          <button class="btn btn-secondary">Download capability deck</button>
+        </div>
+        <div class="contact-block">
+          <div class="contact-item">
+            <div class="label">Web</div>
+            <div class="value">younite.consulting</div>
+          </div>
+          <div class="contact-item">
+            <div class="label">Based in</div>
+            <div class="value">Switzerland</div>
+          </div>
+          <div class="contact-item">
+            <div class="label">Languages</div>
+            <div class="value">DE · FR · IT · EN</div>
+          </div>
+        </div>
       </div>
-      <div class="contact">
-        <div class="contact-item">
-          <div class="contact-label">Web</div>
-          <div class="contact-value">younite.consulting</div>
-        </div>
-        <div class="contact-item">
-          <div class="contact-label">Based in</div>
-          <div class="contact-value">Switzerland</div>
-        </div>
+      <div class="photo">
+        <div class="photo-caption">Team workshop</div>
       </div>
     </div>
     <div class="logo"><span class="logo-mark"></span>Younite</div>
@@ -565,15 +766,12 @@
 (function () {
   function applyScale() {
     var vw = document.documentElement.clientWidth;
-    var wrappers = document.querySelectorAll('.slide-wrapper');
-    var slides   = document.querySelectorAll('.slide');
-    wrappers.forEach(function (w) {
-      var scale = Math.min(vw, 1920) / 1920;
+    var scale = Math.min(vw, 1920) / 1920;
+    document.querySelectorAll('.slide-wrapper').forEach(function (w) {
       w.style.height = (1080 * scale) + 'px';
       w.style.width  = Math.min(vw, 1920) + 'px';
     });
-    slides.forEach(function (s) {
-      var scale = Math.min(vw, 1920) / 1920;
+    document.querySelectorAll('.slide').forEach(function (s) {
       s.style.transform = 'scale(' + scale + ')';
     });
   }
