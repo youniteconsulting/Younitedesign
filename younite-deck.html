@@ -1,767 +1,869 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
 <meta charset="UTF-8">
-<title>Younite Consulting — Sample Deck</title>
+<title>Younite Consulting</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  :root {
-    /* Airbnb system tokens */
-    --canvas: #ffffff;
-    --surface-soft: #f7f7f7;
-    --surface-strong: #f2f2f2;
-    --ink: #222222;
-    --body: #3f3f3f;
-    --muted: #6a6a6a;
-    --muted-soft: #929292;
-    --hairline: #dddddd;
-    --hairline-soft: #ebebeb;
-    --rausch: #5e7a5a;
-    --rausch-active: #485f44;
-    /* Photo placeholder tones — warm, on-brand for HR consulting */
-    --photo-warm-1: linear-gradient(135deg, #e8d5c4 0%, #c9a98a 60%, #a8866a 100%);
-    --photo-warm-2: linear-gradient(135deg, #d4d8c8 0%, #a8b09a 60%, #7d8770 100%);
-    --photo-warm-3: linear-gradient(135deg, #e6d5cc 0%, #c4a89c 60%, #9a7c70 100%);
-    --photo-warm-4: linear-gradient(135deg, #ddd2c6 0%, #b8a896 60%, #8c7c6a 100%);
-    --shadow-card: rgba(0,0,0,0.02) 0 0 0 1px, rgba(0,0,0,0.04) 0 2px 6px 0, rgba(0,0,0,0.1) 0 4px 8px 0;
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  html, body {
-    background: #2a2a2e;
-    font-family: 'Inter', 'Airbnb Cereal VF', Circular, -apple-system, system-ui, sans-serif;
-    color: var(--ink);
-    -webkit-font-smoothing: antialiased;
-  }
-  .deck {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 24px;
-    padding: 24px 0;
-  }
-  .slide-wrapper {
-    width: 100%;
-    max-width: 1920px;
-    position: relative;
-    overflow: hidden;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
-    border-radius: 14px;
-  }
-  .slide {
-    width: 1920px;
-    height: 1080px;
-    position: absolute;
-    top: 0;
-    left: 0;
-    transform-origin: top left;
-  }
-  .slide-inner {
-    position: absolute;
-    inset: 0;
-    padding: 96px;
-  }
+:root {
+  --accent:       #E0622A;
+  --accent-light: #FDF0E8;
+  --accent-mid:   rgba(224,98,42,0.18);
+  --canvas:       #ffffff;
+  --surface:      #faf9f7;
+  --ink:          #1c1c1c;
+  --body-c:       #3d3d3d;
+  --muted:        #717171;
+  --hairline:     #e5e3e0;
+  --shadow:       rgba(0,0,0,0.02) 0 0 0 1px,
+                  rgba(0,0,0,0.05) 0 2px 6px 0,
+                  rgba(0,0,0,0.08) 0 6px 16px 0;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+  background: #232323;
+  font-family: 'Inter', -apple-system, system-ui, sans-serif;
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+}
+.deck {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  padding: 24px 0;
+}
+.slide-wrapper {
+  width: 100%;
+  max-width: 1920px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.45);
+}
+.slide {
+  width: 1920px;
+  height: 1080px;
+  position: absolute;
+  top: 0; left: 0;
+  transform-origin: top left;
+}
+/* 5% safe-zone = 96px on 1920 */
+.si { position: absolute; inset: 0; padding: 96px; }
 
-  /* === LOGO (every slide) === */
-  .logo {
-    position: absolute;
-    bottom: 96px;
-    left: 96px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 18px;
-    font-weight: 700;
-    color: var(--ink);
-    letter-spacing: -0.2px;
-  }
-  .logo-mark {
-    width: 28px;
-    height: 28px;
-    background: var(--rausch);
-    border-radius: 9999px;
-    position: relative;
-    flex-shrink: 0;
-  }
-  .logo-mark::after {
-    content: '';
-    position: absolute;
-    inset: 7px;
-    background: #fff;
-    border-radius: 9999px;
-  }
-  .logo-light { color: #fff; }
+/* ─── Logo wordmark (Comfortaa approximates the actual rounded letterforms) ─── */
+/* Replace .logo content with <img src="younite-logo.svg"> when the file is available */
+.logo {
+  position: absolute;
+  bottom: 80px;
+  left: 96px;
+  font-family: 'Comfortaa', cursive;
+  font-weight: 300;
+  font-size: 28px;
+  color: var(--accent);
+  letter-spacing: -0.3px;
+  line-height: 1;
+}
+.slide-num {
+  position: absolute;
+  bottom: 84px;
+  right: 96px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+.eyebrow {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 20px;
+}
+.pill-btn {
+  display: inline-flex;
+  align-items: center;
+  background: var(--accent);
+  color: #fff;
+  padding: 16px 32px;
+  border-radius: 9999px;
+  font-size: 17px;
+  font-weight: 500;
+  width: fit-content;
+  border: none;
+  cursor: pointer;
+}
 
-  .slide-num {
-    position: absolute;
-    bottom: 100px;
-    right: 96px;
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--muted);
-    letter-spacing: 0.32px;
-    text-transform: uppercase;
-    font-variant-numeric: tabular-nums;
-  }
+/* ════════════════════════════════════════
+   SLIDE 1 · HERO
+════════════════════════════════════════ */
+.s1 { background: var(--canvas); }
+.s1 .si {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+.s1 .copy { display: flex; flex-direction: column; }
+.s1 .meta-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+.s1 .tag {
+  background: var(--accent-light);
+  color: var(--accent);
+  padding: 5px 14px;
+  border-radius: 9999px;
+  font-size: 13px;
+  font-weight: 600;
+}
+.s1 h1 {
+  font-size: 60px;
+  font-weight: 700;
+  line-height: 1.09;
+  letter-spacing: -1.2px;
+  color: var(--ink);
+  margin-bottom: 28px;
+}
+.s1 .lead {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--body-c);
+  max-width: 600px;
+  margin-bottom: 40px;
+}
+.s1 .metrics {
+  display: flex;
+  gap: 40px;
+  padding-top: 32px;
+  margin-top: 8px;
+  border-top: 1px solid var(--hairline);
+}
+.s1 .metric .n {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: -0.5px;
+  line-height: 1;
+  margin-bottom: 4px;
+  font-variant-numeric: tabular-nums;
+}
+.s1 .metric .n span { color: var(--accent); }
+.s1 .metric .l {
+  font-size: 13px;
+  color: var(--muted);
+  font-weight: 400;
+}
+.s1 .illo {
+  width: 100%;
+  height: 800px;
+  border-radius: 24px;
+  overflow: hidden;
+}
 
-  /* Eyebrow tag — used on most slides */
-  .eyebrow {
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 0.32px;
-    text-transform: uppercase;
-    color: var(--rausch);
-    margin-bottom: 32px;
-  }
+/* ════════════════════════════════════════
+   SLIDE 2 · WAS UNS AUSMACHT
+════════════════════════════════════════ */
+.s2 { background: var(--canvas); }
+.s2 .stats-bar {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin-bottom: 56px;
+  padding-bottom: 48px;
+  border-bottom: 1px solid var(--hairline);
+}
+.s2 .stat {
+  padding: 0 48px;
+  border-right: 1px solid var(--hairline);
+}
+.s2 .stat:first-child { padding-left: 0; }
+.s2 .stat:last-child  { border-right: none; }
+.s2 .stat .n {
+  font-size: 72px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -2px;
+  color: var(--ink);
+  margin-bottom: 8px;
+  font-variant-numeric: tabular-nums;
+}
+.s2 .stat .n em { font-style: normal; color: var(--accent); }
+.s2 .stat .l {
+  font-size: 17px;
+  font-weight: 400;
+  color: var(--muted);
+}
+.s2 .values {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 56px;
+}
+.s2 .value .icon-box {
+  width: 56px;
+  height: 56px;
+  background: var(--accent-light);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+.s2 .value h3 {
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: -0.3px;
+  color: var(--ink);
+  margin-bottom: 12px;
+}
+.s2 .value p {
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--body-c);
+}
 
-  /* ============ SLIDE 1: HERO ============ */
-  .s1 { background: var(--canvas); }
-  .s1 .slide-inner {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 64px;
-    align-items: center;
-  }
-  .s1 .copy { padding-right: 32px; }
-  .s1 .meta-line {
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--muted);
-    margin-bottom: 24px;
-    letter-spacing: 0.2px;
-    font-variant-numeric: tabular-nums;
-  }
-  .s1 h1 {
-    font-size: 64px;
-    font-weight: 600;
-    line-height: 1.08;
-    letter-spacing: -1.2px;
-    color: var(--ink);
-    margin-bottom: 32px;
-  }
-  .s1 .lead {
-    font-size: 22px;
-    font-weight: 400;
-    line-height: 1.5;
-    color: var(--body);
-    max-width: 520px;
-  }
-  .s1 .photo {
-    width: 100%;
-    height: 720px;
-    background: var(--photo-warm-1);
-    border-radius: 20px;
-    position: relative;
-    overflow: hidden;
-  }
-  .s1 .photo::before {
-    /* simulated photographic atmosphere */
-    content: '';
-    position: absolute;
-    inset: 0;
-    background:
-      radial-gradient(ellipse at 30% 25%, rgba(255,240,220,0.5) 0%, transparent 45%),
-      radial-gradient(ellipse at 70% 75%, rgba(60,40,30,0.3) 0%, transparent 50%);
-  }
-  .s1 .photo-caption {
-    position: absolute;
-    bottom: 24px;
-    left: 24px;
-    background: rgba(255,255,255,0.92);
-    color: var(--ink);
-    padding: 6px 14px;
-    border-radius: 9999px;
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.1px;
-    box-shadow: var(--shadow-card);
-  }
+/* ════════════════════════════════════════
+   SLIDE 3 · LEISTUNGEN
+════════════════════════════════════════ */
+.s3 { background: var(--canvas); }
+.s3 .hdr { margin-bottom: 40px; }
+.s3 h2 {
+  font-size: 48px;
+  font-weight: 700;
+  letter-spacing: -0.8px;
+  line-height: 1.1;
+  color: var(--ink);
+  margin-bottom: 10px;
+}
+.s3 .sub {
+  font-size: 18px;
+  color: var(--muted);
+  font-weight: 400;
+}
+.s3 .cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.s3 .card {
+  background: var(--surface);
+  border-radius: 20px;
+  padding: 0 0 36px 0;
+  border: 1px solid var(--hairline);
+  overflow: hidden;
+}
+.s3 .card-illo {
+  width: 100%;
+  height: 196px;
+  margin-bottom: 28px;
+  overflow: hidden;
+}
+.s3 .card-body { padding: 0 32px; }
+.s3 .card h3 {
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: -0.3px;
+  color: var(--ink);
+  margin-bottom: 10px;
+}
+.s3 .card p {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--body-c);
+  margin-bottom: 20px;
+}
+.s3 .chip {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 5px 14px;
+  border-radius: 9999px;
+  letter-spacing: 0.2px;
+}
 
-  /* ============ SLIDE 2: APPROACH ============ */
-  .s2 { background: var(--canvas); }
-  .s2 .slide-inner {
-    display: grid;
-    grid-template-columns: 5fr 4fr;
-    gap: 80px;
-    align-items: center;
-  }
-  .s2 h2 {
-    font-size: 56px;
-    font-weight: 600;
-    line-height: 1.1;
-    letter-spacing: -1px;
-    color: var(--ink);
-    margin-bottom: 32px;
-  }
-  .s2 .lead {
-    font-size: 20px;
-    font-weight: 400;
-    line-height: 1.55;
-    color: var(--body);
-    max-width: 560px;
-  }
-  .s2 .lead + .lead { margin-top: 24px; }
-  .s2 .photo {
-    width: 100%;
-    height: 600px;
-    background: var(--photo-warm-2);
-    border-radius: 20px;
-    position: relative;
-    overflow: hidden;
-  }
-  .s2 .photo::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background:
-      radial-gradient(ellipse at 65% 30%, rgba(255,250,235,0.45) 0%, transparent 50%),
-      radial-gradient(ellipse at 25% 80%, rgba(40,55,40,0.35) 0%, transparent 55%);
-  }
-  .s2 .photo-caption {
-    position: absolute;
-    bottom: 24px;
-    left: 24px;
-    background: rgba(255,255,255,0.92);
-    padding: 6px 14px;
-    border-radius: 9999px;
-    font-size: 12px;
-    font-weight: 600;
-    box-shadow: var(--shadow-card);
-  }
+/* ════════════════════════════════════════
+   SLIDE 4 · UNSER VORGEHEN
+════════════════════════════════════════ */
+.s4 { background: var(--surface); }
+.s4 .quote-block {
+  padding-bottom: 48px;
+  border-bottom: 1px solid var(--hairline);
+  margin-bottom: 56px;
+}
+.s4 .qmark {
+  font-family: Georgia, serif;
+  font-size: 72px;
+  line-height: 0.8;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+.s4 .quote {
+  font-size: 38px;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.6px;
+  color: var(--ink);
+  font-style: italic;
+  max-width: 1400px;
+}
+.s4 .steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+}
+.s4 .step-label {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--accent);
+  padding-bottom: 16px;
+  border-bottom: 2px solid var(--accent);
+  margin-bottom: 16px;
+  display: inline-block;
+}
+.s4 .step h4 {
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: -0.2px;
+  margin-bottom: 10px;
+}
+.s4 .step p {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--body-c);
+}
 
-  /* ============ SLIDE 3: SERVICES ============ */
-  .s3 { background: var(--canvas); }
-  .s3 .heading-block { max-width: 1100px; margin-bottom: 64px; }
-  .s3 h2 {
-    font-size: 48px;
-    font-weight: 600;
-    line-height: 1.1;
-    letter-spacing: -0.8px;
-    color: var(--ink);
-    margin-bottom: 16px;
-  }
-  .s3 .sub {
-    font-size: 18px;
-    font-weight: 400;
-    line-height: 1.5;
-    color: var(--muted);
-    max-width: 640px;
-  }
-  .s3 .grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
-  }
-  .s3 .card {
-    background: var(--canvas);
-    border-radius: 20px;
-    overflow: hidden;
-  }
-  .s3 .card-photo {
-    width: 100%;
-    aspect-ratio: 4 / 3;
-    border-radius: 14px;
-    margin-bottom: 16px;
-    position: relative;
-    overflow: hidden;
-  }
-  .s3 .card-photo.p1 { background: var(--photo-warm-1); }
-  .s3 .card-photo.p2 { background: var(--photo-warm-2); }
-  .s3 .card-photo.p3 { background: var(--photo-warm-3); }
-  .s3 .card-photo::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background:
-      radial-gradient(ellipse at 40% 30%, rgba(255,245,225,0.45) 0%, transparent 50%),
-      radial-gradient(ellipse at 70% 75%, rgba(40,30,25,0.3) 0%, transparent 55%);
-  }
-  .s3 .badge {
-    position: absolute;
-    top: 16px;
-    left: 16px;
-    background: #fff;
-    padding: 4px 12px;
-    border-radius: 9999px;
-    font-size: 11px;
-    font-weight: 600;
-    box-shadow: var(--shadow-card);
-  }
-  .s3 .card h3 {
-    font-size: 22px;
-    font-weight: 600;
-    line-height: 1.2;
-    letter-spacing: -0.3px;
-    color: var(--ink);
-    margin-bottom: 8px;
-  }
-  .s3 .card .meta {
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 1.5;
-    color: var(--muted);
-    margin-bottom: 12px;
-  }
-  .s3 .card .price {
-    font-size: 16px;
-    font-weight: 600;
-    color: var(--ink);
-  }
+/* ════════════════════════════════════════
+   SLIDE 5 · KUNDENSTIMMEN
+════════════════════════════════════════ */
+.s5 { background: var(--canvas); }
+.s5 h2 {
+  font-size: 44px;
+  font-weight: 700;
+  letter-spacing: -0.7px;
+  color: var(--ink);
+  margin-bottom: 40px;
+}
+.s5 .grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-bottom: 40px;
+}
+.s5 .tcard {
+  background: var(--surface);
+  border-radius: 20px;
+  padding: 36px;
+  border: 1px solid var(--hairline);
+  position: relative;
+}
+.s5 .tcard::before {
+  content: '\201C';
+  position: absolute;
+  top: 20px; right: 28px;
+  font-family: Georgia, serif;
+  font-size: 96px;
+  line-height: 1;
+  color: var(--accent);
+  opacity: 0.18;
+}
+.s5 .tcard p {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.55;
+  color: var(--ink);
+  margin-bottom: 24px;
+}
+.s5 .author { display: flex; align-items: center; gap: 12px; }
+.s5 .av {
+  width: 48px; height: 48px;
+  border-radius: 9999px;
+  background: var(--accent);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.s5 .av.v2 { background: #5e7a5a; }
+.s5 .av.v3 { background: #4a6ea8; }
+.s5 .av.v4 { background: #7a5e8a; }
+.s5 .aname { font-size: 14px; font-weight: 600; color: var(--ink); }
+.s5 .arole { font-size: 13px; color: var(--muted); }
+.s5 .stats-row {
+  display: flex;
+  gap: 48px;
+  padding-top: 28px;
+  border-top: 1px solid var(--hairline);
+}
+.s5 .si-num {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: -0.5px;
+  font-variant-numeric: tabular-nums;
+}
+.s5 .si-num span { color: var(--accent); }
+.s5 .si-lbl { font-size: 13px; color: var(--muted); }
 
-  /* ============ SLIDE 4: METHODOLOGY ============ */
-  .s4 { background: var(--surface-soft); }
-  .s4 .heading-block { max-width: 1100px; margin-bottom: 64px; }
-  .s4 h2 {
-    font-size: 48px;
-    font-weight: 600;
-    line-height: 1.1;
-    letter-spacing: -0.8px;
-    color: var(--ink);
-    margin-bottom: 16px;
-  }
-  .s4 .sub {
-    font-size: 18px;
-    font-weight: 400;
-    line-height: 1.5;
-    color: var(--muted);
-    max-width: 640px;
-  }
-  .s4 .timeline {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 32px;
-    position: relative;
-  }
-  .s4 .timeline::before {
-    content: '';
-    position: absolute;
-    top: 24px;
-    left: 24px;
-    right: 24px;
-    height: 1px;
-    background: var(--hairline);
-  }
-  .s4 .step { position: relative; }
-  .s4 .step-dot {
-    width: 48px;
-    height: 48px;
-    border-radius: 9999px;
-    background: var(--canvas);
-    border: 2px solid var(--ink);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 16px;
-    font-weight: 700;
-    color: var(--ink);
-    margin-bottom: 32px;
-    position: relative;
-    z-index: 1;
-  }
-  .s4 .step:first-child .step-dot {
-    background: var(--ink);
-    color: #fff;
-  }
-  .s4 .step h4 {
-    font-size: 22px;
-    font-weight: 600;
-    line-height: 1.25;
-    letter-spacing: -0.2px;
-    color: var(--ink);
-    margin-bottom: 12px;
-  }
-  .s4 .step p {
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 1.5;
-    color: var(--muted);
-  }
-
-  /* ============ SLIDE 5: TESTIMONIAL / PROOF ============ */
-  .s5 { background: var(--canvas); }
-  .s5 .slide-inner {
-    display: grid;
-    grid-template-columns: 4fr 5fr;
-    gap: 80px;
-    align-items: center;
-  }
-  .s5 .rating-block {
-    text-align: center;
-    padding: 48px 32px;
-    border-right: 1px solid var(--hairline);
-    border-left: 1px solid var(--hairline);
-  }
-  .s5 .rating-num {
-    font-size: 96px;
-    font-weight: 700;
-    line-height: 1;
-    letter-spacing: -2px;
-    color: var(--ink);
-    margin-bottom: 16px;
-    font-variant-numeric: tabular-nums;
-  }
-  .s5 .rating-label {
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--ink);
-    margin-bottom: 32px;
-  }
-  .s5 .rating-row {
-    display: flex;
-    justify-content: space-between;
-    border-top: 1px solid var(--hairline);
-    padding-top: 24px;
-  }
-  .s5 .rating-row .stat-num {
-    font-size: 28px;
-    font-weight: 600;
-    color: var(--ink);
-    margin-bottom: 4px;
-    font-variant-numeric: tabular-nums;
-  }
-  .s5 .rating-row .stat-label {
-    font-size: 12px;
-    font-weight: 500;
-    color: var(--muted);
-    letter-spacing: 0.1px;
-  }
-  .s5 .reviews {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 32px 48px;
-  }
-  .s5 .review .review-text {
-    font-size: 18px;
-    font-weight: 400;
-    line-height: 1.5;
-    color: var(--ink);
-    margin-bottom: 20px;
-  }
-  .s5 .review .author { display: flex; align-items: center; gap: 12px; }
-  .s5 .avatar {
-    width: 48px;
-    height: 48px;
-    border-radius: 9999px;
-    flex-shrink: 0;
-    color: #fff;
-    font-size: 18px;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .s5 .avatar.a1 { background: linear-gradient(135deg, #c9a98a, #a8866a); }
-  .s5 .avatar.a2 { background: linear-gradient(135deg, #a8b09a, #7d8770); }
-  .s5 .avatar.a3 { background: linear-gradient(135deg, #c4a89c, #9a7c70); }
-  .s5 .avatar.a4 { background: linear-gradient(135deg, #b8a896, #8c7c6a); }
-  .s5 .author-info .name {
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--ink);
-  }
-  .s5 .author-info .role {
-    font-size: 13px;
-    font-weight: 400;
-    color: var(--muted);
-  }
-
-  /* ============ SLIDE 6: CTA ============ */
-  .s6 { background: var(--canvas); }
-  .s6 .slide-inner {
-    display: grid;
-    grid-template-columns: 5fr 4fr;
-    gap: 80px;
-    align-items: center;
-  }
-  .s6 h2 {
-    font-size: 64px;
-    font-weight: 600;
-    line-height: 1.08;
-    letter-spacing: -1.2px;
-    color: var(--ink);
-    margin-bottom: 32px;
-  }
-  .s6 .lead {
-    font-size: 20px;
-    font-weight: 400;
-    line-height: 1.55;
-    color: var(--body);
-    max-width: 540px;
-    margin-bottom: 48px;
-  }
-  .s6 .btn-row { display: flex; gap: 16px; margin-bottom: 64px; }
-  .s6 .btn {
-    font-family: inherit;
-    font-size: 16px;
-    font-weight: 500;
-    padding: 14px 24px;
-    border-radius: 8px;
-    border: none;
-    cursor: pointer;
-    height: 48px;
-  }
-  .s6 .btn-primary {
-    background: var(--rausch);
-    color: #fff;
-  }
-  .s6 .btn-secondary {
-    background: var(--canvas);
-    color: var(--ink);
-    border: 1px solid var(--ink);
-  }
-  .s6 .contact-block {
-    display: flex;
-    gap: 48px;
-    padding-top: 32px;
-    border-top: 1px solid var(--hairline);
-  }
-  .s6 .contact-item .label {
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 0.32px;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 6px;
-  }
-  .s6 .contact-item .value {
-    font-size: 18px;
-    font-weight: 500;
-    color: var(--ink);
-  }
-  .s6 .photo {
-    width: 100%;
-    height: 720px;
-    background: var(--photo-warm-4);
-    border-radius: 20px;
-    position: relative;
-    overflow: hidden;
-  }
-  .s6 .photo::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background:
-      radial-gradient(ellipse at 35% 30%, rgba(255,245,225,0.45) 0%, transparent 50%),
-      radial-gradient(ellipse at 70% 80%, rgba(45,35,30,0.3) 0%, transparent 55%);
-  }
-  .s6 .photo-caption {
-    position: absolute;
-    bottom: 24px;
-    left: 24px;
-    background: rgba(255,255,255,0.92);
-    padding: 6px 14px;
-    border-radius: 9999px;
-    font-size: 12px;
-    font-weight: 600;
-    box-shadow: var(--shadow-card);
-  }
-
+/* ════════════════════════════════════════
+   SLIDE 6 · KONTAKT / CTA
+════════════════════════════════════════ */
+.s6 { background: var(--canvas); }
+.s6 .si {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+.s6 h2 {
+  font-size: 56px;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -1px;
+  color: var(--ink);
+  margin-bottom: 20px;
+}
+.s6 .lead {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--body-c);
+  max-width: 560px;
+  margin-bottom: 36px;
+}
+.s6 .contact {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px 48px;
+  padding-top: 32px;
+  margin-top: 40px;
+  border-top: 1px solid var(--hairline);
+}
+.s6 .ci .lbl {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+.s6 .ci .val {
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--ink);
+}
+.s6 .illo {
+  width: 100%;
+  height: 800px;
+  border-radius: 24px;
+  overflow: hidden;
+}
 </style>
 </head>
 <body>
 <div class="deck">
 
-  <!-- ============== SLIDE 1: HERO ============== -->
-  <div class="slide-wrapper"><section class="slide s1">
-    <div class="slide-inner">
-      <div class="copy">
-        <div class="meta-line">Younite Consulting · Capability Overview · 2026</div>
-        <h1>HR &amp; training, designed for the people who do the work.</h1>
-        <p class="lead">A Swiss boutique consultancy helping organisations recruit, develop, and retain the people who matter — with genuine partnership, not transactional advice.</p>
+<!-- ═══════════════════════════════════════════════════
+     SLIDE 1 · HERO
+════════════════════════════════════════════════════ -->
+<div class="slide-wrapper"><section class="slide s1">
+  <div class="si">
+    <div class="copy">
+      <div class="meta-row">
+        <div class="tag">Luzern · Schweiz</div>
+        <div class="tag">Seit 2016</div>
       </div>
-      <div class="photo">
-        <div class="photo-caption">Workshop — Zürich</div>
-      </div>
-    </div>
-    <div class="logo"><span class="logo-mark"></span>Younite</div>
-    <div class="slide-num">01 / 06</div>
-  </section></div>
-
-  <!-- ============== SLIDE 2: APPROACH ============== -->
-  <div class="slide-wrapper"><section class="slide s2">
-    <div class="slide-inner">
-      <div>
-        <div class="eyebrow">Our Approach</div>
-        <h2>Echte Begegnung auf Augenhöhe.</h2>
-        <p class="lead">We bring structured methods, Swiss precision, and twenty years of practitioner experience to every engagement.</p>
-        <p class="lead">From a single workshop to a full HR transformation — same care, same craft.</p>
-      </div>
-      <div class="photo">
-        <div class="photo-caption">Coaching session</div>
+      <h1>Leadership- und Team-Coachings mit Wirkung.</h1>
+      <p class="lead">Wir unterstützen dich dabei, deine besten Mitarbeitenden langfristig zu halten — mit gezielter Führungskräfteentwicklung, effektiven Kommunikationstrainings und nachhaltiger Teamentwicklung.</p>
+      <button class="pill-btn">Kostenloses Strategiegespräch →</button>
+      <div class="metrics">
+        <div class="metric"><div class="n">5000<span>+</span></div><div class="l">gecoachte Personen</div></div>
+        <div class="metric"><div class="n">100<span>+</span></div><div class="l">zufriedene Kunden</div></div>
+        <div class="metric"><div class="n">2016</div><div class="l">gegründet</div></div>
       </div>
     </div>
-    <div class="logo"><span class="logo-mark"></span>Younite</div>
-    <div class="slide-num">02 / 06</div>
-  </section></div>
+    <!-- SVG ILLUSTRATION A: People-network (connection / Younite motif) -->
+    <div class="illo">
+      <svg viewBox="0 0 800 800" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+        <rect width="800" height="800" fill="#FDF0E8"/>
+        <!-- Soft aura rings around central node -->
+        <circle cx="400" cy="400" r="130" fill="#E0622A" opacity="0.06"/>
+        <circle cx="400" cy="400" r="95"  fill="#E0622A" opacity="0.09"/>
+        <!-- Central node -->
+        <circle cx="400" cy="400" r="56"  fill="#E0622A"/>
+        <!-- Secondary people-nodes -->
+        <circle cx="210" cy="215" r="42" fill="#E0622A" opacity="0.72"/>
+        <circle cx="590" cy="200" r="35" fill="#E0622A" opacity="0.60"/>
+        <circle cx="605" cy="565" r="46" fill="#E0622A" opacity="0.70"/>
+        <circle cx="192" cy="570" r="32" fill="#E0622A" opacity="0.55"/>
+        <circle cx="400" cy="125" r="24" fill="#E0622A" opacity="0.45"/>
+        <circle cx="680" cy="390" r="20" fill="#E0622A" opacity="0.35"/>
+        <circle cx="110" cy="390" r="18" fill="#E0622A" opacity="0.32"/>
+        <!-- Connecting bezier curves -->
+        <path d="M 246 232 C 308 292 352 344 360 370" stroke="#E0622A" stroke-width="2.5" fill="none" opacity="0.28" stroke-linecap="round"/>
+        <path d="M 558 215 C 492 278 444 334 422 362" stroke="#E0622A" stroke-width="2.2" fill="none" opacity="0.24" stroke-linecap="round"/>
+        <path d="M 218 540 C 286 496 336 456 360 432" stroke="#E0622A" stroke-width="2.2" fill="none" opacity="0.24" stroke-linecap="round"/>
+        <path d="M 562 548 C 498 504 452 464 424 438" stroke="#E0622A" stroke-width="2.5" fill="none" opacity="0.28" stroke-linecap="round"/>
+        <path d="M 400 149 C 400 242 400 312 400 344" stroke="#E0622A" stroke-width="1.8" fill="none" opacity="0.20" stroke-linecap="round"/>
+        <path d="M 660 392 C 556 393 474 395 456 397" stroke="#E0622A" stroke-width="1.6" fill="none" opacity="0.18" stroke-linecap="round"/>
+        <path d="M 128 392 C 232 393 314 395 344 397" stroke="#E0622A" stroke-width="1.6" fill="none" opacity="0.18" stroke-linecap="round"/>
+        <!-- Tertiary micro-nodes -->
+        <circle cx="496" cy="95"  r="13" fill="#E0622A" opacity="0.20"/>
+        <circle cx="272" cy="672" r="14" fill="#E0622A" opacity="0.15"/>
+        <circle cx="624" cy="680" r="11" fill="#E0622A" opacity="0.15"/>
+        <circle cx="690" cy="210" r="10" fill="#E0622A" opacity="0.14"/>
+        <circle cx="96"  cy="218" r="9"  fill="#E0622A" opacity="0.12"/>
+        <circle cx="710" cy="580" r="12" fill="#E0622A" opacity="0.12"/>
+        <circle cx="76"  cy="574" r="9"  fill="#E0622A" opacity="0.10"/>
+      </svg>
+    </div>
+  </div>
+  <div class="logo">younite</div>
+  <div class="slide-num">01 / 06</div>
+</section></div>
 
-  <!-- ============== SLIDE 3: SERVICES ============== -->
-  <div class="slide-wrapper"><section class="slide s3">
-    <div class="slide-inner">
-      <div class="heading-block">
-        <div class="eyebrow">What We Do</div>
-        <h2>Three practices, one philosophy.</h2>
-        <p class="sub">Every engagement is co-designed with you — never imposed from above.</p>
+<!-- ═══════════════════════════════════════════════════
+     SLIDE 2 · WAS UNS AUSMACHT
+════════════════════════════════════════════════════ -->
+<div class="slide-wrapper"><section class="slide s2">
+  <div class="si">
+    <div class="eyebrow">Was uns ausmacht</div>
+    <div class="stats-bar">
+      <div class="stat">
+        <div class="n">5000<em>+</em></div>
+        <div class="l">von uns gecoachte Personen</div>
       </div>
-      <div class="grid">
-        <div class="card">
-          <div class="card-photo p1"><div class="badge">★ Most requested</div></div>
-          <h3>Leadership training</h3>
-          <p class="meta">Programmes for first-time managers through executive teams · DE / FR / IT / EN</p>
-          <div class="price">From 2 days · onsite or virtual</div>
-        </div>
-        <div class="card">
-          <div class="card-photo p2"><div class="badge">★ Long-term partnership</div></div>
-          <h3>HR consulting</h3>
-          <p class="meta">Org design, compensation strategy, and operating-model reviews tailored to Swiss employment law</p>
-          <div class="price">Engagement-based</div>
-        </div>
-        <div class="card">
-          <div class="card-photo p3"><div class="badge">★ One-to-one</div></div>
-          <h3>Talent &amp; coaching</h3>
-          <p class="meta">Individual coaching, succession planning, and assessment supporting careers at every level</p>
-          <div class="price">From 6-session programmes</div>
-        </div>
+      <div class="stat">
+        <div class="n">100<em>+</em></div>
+        <div class="l">Kunden in der Schweiz und DACH</div>
+      </div>
+      <div class="stat">
+        <div class="n">2016</div>
+        <div class="l">gegründet, Sitz in Luzern</div>
       </div>
     </div>
-    <div class="logo"><span class="logo-mark"></span>Younite</div>
-    <div class="slide-num">03 / 06</div>
-  </section></div>
-
-  <!-- ============== SLIDE 4: METHODOLOGY ============== -->
-  <div class="slide-wrapper"><section class="slide s4">
-    <div class="slide-inner">
-      <div class="heading-block">
-        <div class="eyebrow">Methodology</div>
-        <h2>How an engagement unfolds.</h2>
-        <p class="sub">Four steps, weeks not months. We move fast because your team can't wait.</p>
+    <div class="values">
+      <!-- VALUE 1: Menschlich -->
+      <div class="value">
+        <div class="icon-box">
+          <!-- Icon: two overlapping people circles -->
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="12" cy="11" r="6" fill="#E0622A"/>
+            <circle cx="20" cy="11" r="6" fill="#E0622A" opacity="0.55"/>
+            <path d="M 2 28 C 2 21 6.5 17 12 17 C 17.5 17 22 21 22 28" fill="#E0622A" opacity="0.85"/>
+            <path d="M 16 26 C 16 21 19.5 18.5 22 18.5 C 26.5 18.5 30 22 30 28" fill="#E0622A" opacity="0.40"/>
+          </svg>
+        </div>
+        <h3>Menschlich</h3>
+        <p>In unseren Coachings setzen wir auf echte Begegnung auf Augenhöhe — kein Programm von der Stange, sondern genuine Präsenz.</p>
       </div>
-      <div class="timeline">
-        <div class="step">
-          <div class="step-dot">1</div>
-          <h4>Listen first</h4>
-          <p>Stakeholder interviews, data review, and a clear-eyed read on the current state.</p>
+      <!-- VALUE 2: Einzigartig -->
+      <div class="value">
+        <div class="icon-box">
+          <!-- Icon: custom hexagon shape -->
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <polygon points="16,2 28,9 28,23 16,30 4,23 4,9" fill="#E0622A"/>
+            <polygon points="16,8 23,12 23,20 16,24 9,20 9,12" fill="#FDF0E8"/>
+            <circle cx="16" cy="16" r="3.5" fill="#E0622A"/>
+          </svg>
         </div>
-        <div class="step">
-          <div class="step-dot">2</div>
-          <h4>Frame the problem</h4>
-          <p>One-page diagnostic with the questions that actually matter — not the symptoms.</p>
+        <h3>Einzigartig</h3>
+        <p>Gemeinsam mit dir gestalten wir Lernformate, die genau auf deine Organisation zugeschnitten sind — massgeschneidert, nicht von der Stange.</p>
+      </div>
+      <!-- VALUE 3: Digital -->
+      <div class="value">
+        <div class="icon-box">
+          <!-- Icon: connected nodes / digital network -->
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="16" cy="16" r="4"   fill="#E0622A"/>
+            <circle cx="5"  cy="8"  r="3"   fill="#E0622A" opacity="0.65"/>
+            <circle cx="27" cy="8"  r="3"   fill="#E0622A" opacity="0.65"/>
+            <circle cx="5"  cy="24" r="3"   fill="#E0622A" opacity="0.65"/>
+            <circle cx="27" cy="24" r="3"   fill="#E0622A" opacity="0.65"/>
+            <line x1="8"  y1="10" x2="13" y2="14" stroke="#E0622A" stroke-width="1.5" opacity="0.5"/>
+            <line x1="24" y1="10" x2="19" y2="14" stroke="#E0622A" stroke-width="1.5" opacity="0.5"/>
+            <line x1="8"  y1="22" x2="13" y2="18" stroke="#E0622A" stroke-width="1.5" opacity="0.5"/>
+            <line x1="24" y1="22" x2="19" y2="18" stroke="#E0622A" stroke-width="1.5" opacity="0.5"/>
+          </svg>
         </div>
-        <div class="step">
-          <div class="step-dot">3</div>
-          <h4>Build with you</h4>
-          <p>Workshops, training, or advisory work — co-created, never imposed from above.</p>
-        </div>
-        <div class="step">
-          <div class="step-dot">4</div>
-          <h4>Make it stick</h4>
-          <p>Follow-through with line managers so change outlasts the engagement.</p>
-        </div>
+        <h3>Digital</h3>
+        <p>Unsere digitalen Learning Journeys ergänzen die Präsenz-Trainings mit wirkungsvollen Formaten — flexibel, skalierbar und messbar.</p>
       </div>
     </div>
-    <div class="logo"><span class="logo-mark"></span>Younite</div>
-    <div class="slide-num">04 / 06</div>
-  </section></div>
+  </div>
+  <div class="logo">younite</div>
+  <div class="slide-num">02 / 06</div>
+</section></div>
 
-  <!-- ============== SLIDE 5: TESTIMONIALS ============== -->
-  <div class="slide-wrapper"><section class="slide s5">
-    <div class="slide-inner">
-      <div class="rating-block">
-        <div class="rating-num">4.9</div>
-        <div class="rating-label">★ Guest favourite</div>
-        <div class="rating-row">
+<!-- ═══════════════════════════════════════════════════
+     SLIDE 3 · UNSERE LEISTUNGEN
+════════════════════════════════════════════════════ -->
+<div class="slide-wrapper"><section class="slide s3">
+  <div class="si">
+    <div class="hdr">
+      <div class="eyebrow">Unsere Leistungen</div>
+      <h2>Drei Angebote, eine Philosophie.</h2>
+      <p class="sub">Jedes Format wird gemeinsam mit dir entwickelt — nie von oben diktiert.</p>
+    </div>
+    <div class="cards">
+
+      <!-- CARD 1: Leadership Trainings -->
+      <div class="card">
+        <div class="card-illo">
+          <!-- Illustration: ascending people nodes = Leadership/growth -->
+          <svg viewBox="0 0 560 196" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+            <rect width="560" height="196" fill="#FDF0E8"/>
+            <!-- Ascending circles suggesting growth -->
+            <circle cx="160" cy="148" r="24" fill="#E0622A" opacity="0.30"/>
+            <circle cx="240" cy="115" r="30" fill="#E0622A" opacity="0.52"/>
+            <circle cx="330" cy="78"  r="36" fill="#E0622A" opacity="0.74"/>
+            <circle cx="330" cy="78"  r="52" fill="#E0622A" opacity="0.09"/>
+            <!-- Upward arrow -->
+            <path d="M 390 138 L 390 44" stroke="#E0622A" stroke-width="3" stroke-linecap="round" opacity="0.45"/>
+            <path d="M 372 64  L 390 44 L 408 64" stroke="#E0622A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.45"/>
+            <!-- Connecting arc -->
+            <path d="M 160 124 C 192 108 216 94 240 85 C 272 70 298 64 330 43" stroke="#E0622A" stroke-width="2" fill="none" opacity="0.22" stroke-linecap="round"/>
+            <!-- Small dots -->
+            <circle cx="86"  cy="164" r="10" fill="#E0622A" opacity="0.18"/>
+            <circle cx="480" cy="50"  r="10" fill="#E0622A" opacity="0.18"/>
+          </svg>
+        </div>
+        <div class="card-body">
+          <h3>Leadership Trainings</h3>
+          <p>Entfessle das Potenzial deines Führungsteams. Bewährte Strategien, um Top-Talente zu binden und ihr volles Potenzial zu entfalten.</p>
+          <span class="chip">★ Meist gebucht</span>
+        </div>
+      </div>
+
+      <!-- CARD 2: Teambuilding -->
+      <div class="card">
+        <div class="card-illo">
+          <!-- Illustration: three nodes in a cluster = teambuilding -->
+          <svg viewBox="0 0 560 196" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+            <rect width="560" height="196" fill="#FDF0E8"/>
+            <!-- Central warmth glow -->
+            <circle cx="280" cy="100" r="72" fill="#E0622A" opacity="0.07"/>
+            <!-- Three people nodes -->
+            <circle cx="280" cy="52"  r="38" fill="#E0622A"/>
+            <circle cx="185" cy="148" r="30" fill="#E0622A" opacity="0.68"/>
+            <circle cx="375" cy="148" r="30" fill="#E0622A" opacity="0.68"/>
+            <!-- Connecting paths -->
+            <path d="M 248 70  C 222 95  204 122 202 140" stroke="#E0622A" stroke-width="2.5" fill="none" opacity="0.32" stroke-linecap="round"/>
+            <path d="M 312 70  C 338 95  356 122 358 140" stroke="#E0622A" stroke-width="2.5" fill="none" opacity="0.32" stroke-linecap="round"/>
+            <path d="M 214 153 C 242 158 258 160 344 154" stroke="#E0622A" stroke-width="2"   fill="none" opacity="0.28" stroke-linecap="round"/>
+            <!-- Side dots -->
+            <circle cx="88"  cy="98" r="12" fill="#E0622A" opacity="0.18"/>
+            <circle cx="472" cy="98" r="12" fill="#E0622A" opacity="0.18"/>
+          </svg>
+        </div>
+        <div class="card-body">
+          <h3>Teambuilding Trainings</h3>
+          <p>Steigere die Mitarbeitendenbindung durch dynamische Workshops. Teams bauen Vertrauen auf und fördern die Zusammenarbeit nachhaltig.</p>
+          <span class="chip">Onsite &amp; virtuell</span>
+        </div>
+      </div>
+
+      <!-- CARD 3: Kulturwandel -->
+      <div class="card">
+        <div class="card-illo">
+          <!-- Illustration: overlapping rings = culture integration -->
+          <svg viewBox="0 0 560 196" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+            <rect width="560" height="196" fill="#FDF0E8"/>
+            <!-- Three overlapping culture rings -->
+            <circle cx="230" cy="102" r="66" fill="#E0622A" opacity="0.22"/>
+            <circle cx="280" cy="102" r="66" fill="#E0622A" opacity="0.22"/>
+            <circle cx="330" cy="102" r="66" fill="#E0622A" opacity="0.22"/>
+            <!-- Inner overlap highlight -->
+            <circle cx="280" cy="102" r="38" fill="#E0622A" opacity="0.16"/>
+            <!-- Central dot -->
+            <circle cx="280" cy="102" r="16" fill="#E0622A"/>
+            <!-- Growth dots above (seedling motif) -->
+            <circle cx="280" cy="26"  r="8"  fill="#E0622A" opacity="0.45"/>
+            <circle cx="302" cy="14"  r="5"  fill="#E0622A" opacity="0.30"/>
+            <circle cx="258" cy="14"  r="5"  fill="#E0622A" opacity="0.30"/>
+            <path d="M 280 62 L 280 34" stroke="#E0622A" stroke-width="2" opacity="0.25" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="card-body">
+          <h3>Kulturwandel</h3>
+          <p>Gestalte eine Unternehmenskultur, die Top-Mitarbeitende bindet und anzieht. Massgeschneiderte Kulturprojekte, die wirklich tragen.</p>
+          <span class="chip">Langfristige Partnerschaft</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="logo">younite</div>
+  <div class="slide-num">03 / 06</div>
+</section></div>
+
+<!-- ═══════════════════════════════════════════════════
+     SLIDE 4 · UNSER VORGEHEN
+════════════════════════════════════════════════════ -->
+<div class="slide-wrapper"><section class="slide s4">
+  <div class="si">
+    <div class="eyebrow">Unser Vorgehen</div>
+    <div class="quote-block">
+      <div class="qmark">&ldquo;</div>
+      <div class="quote">Echte Begegnung auf Augenhöhe — kein Consulting-Sprech, kein Copy-Paste-Programm.</div>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-label">01 · Zuhören</div>
+        <h4>Verstehen, bevor wir handeln</h4>
+        <p>Stakeholder-Interviews, Datenauswertung und ein ehrlicher Blick auf den Ist-Zustand — ohne Schönfärberei.</p>
+      </div>
+      <div class="step">
+        <div class="step-label">02 · Diagnostizieren</div>
+        <h4>Die echten Fragen stellen</h4>
+        <p>Eine klare Einseiter-Diagnose mit den Fragen, die wirklich zählen — nicht nur die Symptome behandeln.</p>
+      </div>
+      <div class="step">
+        <div class="step-label">03 · Gemeinsam gestalten</div>
+        <h4>Co-Design, nicht Diktat</h4>
+        <p>Workshops, Trainings oder Beratungsleistungen — gemeinsam mit dir entwickelt, nie von oben aufgezwungen.</p>
+      </div>
+      <div class="step">
+        <div class="step-label">04 · Verankern</div>
+        <h4>Wirkung, die bleibt</h4>
+        <p>Begleitung der Führungskräfte im Alltag, damit der Wandel das Engagement überdauert.</p>
+      </div>
+    </div>
+  </div>
+  <div class="logo">younite</div>
+  <div class="slide-num">04 / 06</div>
+</section></div>
+
+<!-- ═══════════════════════════════════════════════════
+     SLIDE 5 · KUNDENSTIMMEN
+════════════════════════════════════════════════════ -->
+<div class="slide-wrapper"><section class="slide s5">
+  <div class="si">
+    <div class="eyebrow">Kundenstimmen</div>
+    <h2>Was unsere Kunden sagen.</h2>
+    <div class="grid">
+      <div class="tcard">
+        <p>«Wir schätzen die Zusammenarbeit mit younite sehr. Der Zusammenhalt in unserem Team wird mit jedem Workshop stärker.»</p>
+        <div class="author">
+          <div class="av">FE</div>
           <div>
-            <div class="stat-num">120+</div>
-            <div class="stat-label">Organisations</div>
+            <div class="aname">Fabio Emch</div>
+            <div class="arole">CEO &amp; Founder, jim &amp; jim</div>
           </div>
+        </div>
+      </div>
+      <div class="tcard">
+        <p>«younite hat bei uns den Teamworkshop für zwei Teams konzipiert und moderiert. Es war ein voller Erfolg.»</p>
+        <div class="author">
+          <div class="av v2">LG</div>
           <div>
-            <div class="stat-num">94%</div>
-            <div class="stat-label">Apply within 30 days</div>
+            <div class="aname">Lucas Guidetti</div>
+            <div class="arole">Brand Design Manager, Curaden</div>
           </div>
         </div>
       </div>
-      <div class="reviews">
-        <div class="review">
-          <p class="review-text">"They listened before they prescribed. The team came away with tools they actually use — six months later."</p>
-          <div class="author">
-            <div class="avatar a1">MK</div>
-            <div class="author-info">
-              <div class="name">Maria Keller</div>
-              <div class="role">CHRO · Manufacturing, 800 FTE</div>
-            </div>
+      <div class="tcard">
+        <p>«Das younite-Team hat einen ausgezeichneten Job gemacht, indem es unsere Filialmitarbeitenden gecoacht und geschult hat.»</p>
+        <div class="author">
+          <div class="av v3">HG</div>
+          <div>
+            <div class="aname">Hans Grubenmann</div>
+            <div class="arole">Learning Specialist, Sunrise</div>
           </div>
         </div>
-        <div class="review">
-          <p class="review-text">"Swiss precision with European warmth. Exactly the partner we needed for a sensitive restructuring."</p>
-          <div class="author">
-            <div class="avatar a2">DR</div>
-            <div class="author-info">
-              <div class="name">Daniel Rossi</div>
-              <div class="role">CEO · Financial services</div>
-            </div>
-          </div>
-        </div>
-        <div class="review">
-          <p class="review-text">"Our managers came in sceptical and left asking when the next module is. Rare for leadership training."</p>
-          <div class="author">
-            <div class="avatar a3">AM</div>
-            <div class="author-info">
-              <div class="name">Anne Müller</div>
-              <div class="role">Head of L&amp;D · Pharma</div>
-            </div>
-          </div>
-        </div>
-        <div class="review">
-          <p class="review-text">"They speak our language — literally and figuratively. Engagements feel collaborative, not transactional."</p>
-          <div class="author">
-            <div class="avatar a4">LB</div>
-            <div class="author-info">
-              <div class="name">Luca Bianchi</div>
-              <div class="role">COO · Tech scale-up</div>
-            </div>
+      </div>
+      <div class="tcard">
+        <p>«Das, was mich dort erwartete, stellte sich als eine der besten Erfahrungen dieses Studiengangs heraus.»</p>
+        <div class="author">
+          <div class="av v4">ME</div>
+          <div>
+            <div class="aname">Michael Eberle</div>
+            <div class="arole">Digital Experience Architect</div>
           </div>
         </div>
       </div>
     </div>
-    <div class="logo"><span class="logo-mark"></span>Younite</div>
-    <div class="slide-num">05 / 06</div>
-  </section></div>
+    <div class="stats-row">
+      <div><div class="si-num">5000<span>+</span></div><div class="si-lbl">gecoachte Personen</div></div>
+      <div><div class="si-num">100<span>+</span></div><div class="si-lbl">Kunden</div></div>
+      <div><div class="si-num">4<span> Sprachen</span></div><div class="si-lbl">DE · FR · IT · EN</div></div>
+    </div>
+  </div>
+  <div class="logo">younite</div>
+  <div class="slide-num">05 / 06</div>
+</section></div>
 
-  <!-- ============== SLIDE 6: CTA ============== -->
-  <div class="slide-wrapper"><section class="slide s6">
-    <div class="slide-inner">
-      <div>
-        <div class="eyebrow">Let's Talk</div>
-        <h2>Tell us what's on your team's mind.</h2>
-        <p class="lead">A 30-minute conversation, no slides, no obligation — just a clear read on whether we're the right partner for you.</p>
-        <div class="btn-row">
-          <button class="btn btn-primary">Book a conversation</button>
-          <button class="btn btn-secondary">Download capability deck</button>
-        </div>
-        <div class="contact-block">
-          <div class="contact-item">
-            <div class="label">Web</div>
-            <div class="value">younite.consulting</div>
-          </div>
-          <div class="contact-item">
-            <div class="label">Based in</div>
-            <div class="value">Switzerland</div>
-          </div>
-          <div class="contact-item">
-            <div class="label">Languages</div>
-            <div class="value">DE · FR · IT · EN</div>
-          </div>
-        </div>
-      </div>
-      <div class="photo">
-        <div class="photo-caption">Team workshop</div>
+<!-- ═══════════════════════════════════════════════════
+     SLIDE 6 · KONTAKT / CTA
+════════════════════════════════════════════════════ -->
+<div class="slide-wrapper"><section class="slide s6">
+  <div class="si">
+    <div>
+      <div class="eyebrow">Jetzt starten</div>
+      <h2>Kostenloses Strategiegespräch buchen.</h2>
+      <p class="lead">30 Minuten, keine Folien, keine Verpflichtung — nur ein offenes Gespräch darüber, was dein Team wirklich braucht.</p>
+      <button class="pill-btn">Termin vereinbaren →</button>
+      <div class="contact">
+        <div class="ci"><div class="lbl">Web</div><div class="val">younite.consulting</div></div>
+        <div class="ci"><div class="lbl">E-Mail</div><div class="val">team@younite.consulting</div></div>
+        <div class="ci"><div class="lbl">Telefon</div><div class="val">041 508 23 93</div></div>
+        <div class="ci"><div class="lbl">Adresse</div><div class="val">Hirschengraben 40, 6003 Luzern</div></div>
       </div>
     </div>
-    <div class="logo"><span class="logo-mark"></span>Younite</div>
-    <div class="slide-num">06 / 06</div>
-  </section></div>
+    <!-- SVG ILLUSTRATION B: Two circles facing each other (Strategiegespräch / coaching meeting) -->
+    <div class="illo">
+      <svg viewBox="0 0 800 800" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+        <rect width="800" height="800" fill="#FDF0E8"/>
+        <!-- Left person aura -->
+        <circle cx="268" cy="380" r="110" fill="#E0622A" opacity="0.08"/>
+        <!-- Left person -->
+        <circle cx="268" cy="380" r="68"  fill="#E0622A" opacity="0.68"/>
+        <!-- Right person aura -->
+        <circle cx="532" cy="380" r="110" fill="#E0622A" opacity="0.08"/>
+        <!-- Right person (slightly larger = confident host) -->
+        <circle cx="532" cy="380" r="78"  fill="#E0622A"/>
+        <!-- Connection arc between them (the "Gespräch") -->
+        <path d="M 336 354 C 370 322 430 322 464 354" stroke="#E0622A" stroke-width="3.5" fill="none" opacity="0.38" stroke-linecap="round"/>
+        <!-- Mutual warmth glow at center -->
+        <circle cx="400" cy="366" r="44" fill="#E0622A" opacity="0.07"/>
+        <!-- Decorative ambient nodes -->
+        <circle cx="400" cy="168" r="20" fill="#E0622A" opacity="0.28"/>
+        <circle cx="152" cy="210" r="13" fill="#E0622A" opacity="0.18"/>
+        <circle cx="648" cy="210" r="13" fill="#E0622A" opacity="0.18"/>
+        <circle cx="140" cy="510" r="11" fill="#E0622A" opacity="0.14"/>
+        <circle cx="660" cy="510" r="11" fill="#E0622A" opacity="0.14"/>
+        <circle cx="400" cy="568" r="16" fill="#E0622A" opacity="0.22"/>
+        <circle cx="400" cy="630" r="10" fill="#E0622A" opacity="0.13"/>
+        <!-- Corner micro-dots -->
+        <circle cx="76"  cy="96"  r="6" fill="#E0622A" opacity="0.10"/>
+        <circle cx="724" cy="96"  r="6" fill="#E0622A" opacity="0.10"/>
+        <circle cx="76"  cy="700" r="6" fill="#E0622A" opacity="0.10"/>
+        <circle cx="724" cy="700" r="6" fill="#E0622A" opacity="0.10"/>
+      </svg>
+    </div>
+  </div>
+  <div class="logo">younite</div>
+  <div class="slide-num">06 / 06</div>
+</section></div>
 
-</div>
+</div><!-- /deck -->
 <script>
 (function () {
   function applyScale() {
