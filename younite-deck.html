@@ -37,12 +37,13 @@
     padding: 24px 0;
   }
   .slide-wrapper {
-    width: min(100vw - 24px, 1920px);
-    aspect-ratio: 16 / 9;
+    width: 100%;
+    max-width: 1920px;
     position: relative;
     overflow: hidden;
     box-shadow: 0 20px 60px rgba(0,0,0,0.4);
     border-radius: 4px;
+    /* height set by JS */
   }
   .slide {
     width: 1920px;
@@ -51,7 +52,7 @@
     top: 0;
     left: 0;
     transform-origin: top left;
-    transform: scale(calc(min(100vw - 24px, 1920px) / 1920));
+    /* transform set by JS */
   }
 
   .slide-inner {
@@ -560,5 +561,25 @@
   </section></div>
 
 </div>
+<script>
+(function () {
+  function applyScale() {
+    var vw = document.documentElement.clientWidth;
+    var wrappers = document.querySelectorAll('.slide-wrapper');
+    var slides   = document.querySelectorAll('.slide');
+    wrappers.forEach(function (w) {
+      var scale = Math.min(vw, 1920) / 1920;
+      w.style.height = (1080 * scale) + 'px';
+      w.style.width  = Math.min(vw, 1920) + 'px';
+    });
+    slides.forEach(function (s) {
+      var scale = Math.min(vw, 1920) / 1920;
+      s.style.transform = 'scale(' + scale + ')';
+    });
+  }
+  applyScale();
+  window.addEventListener('resize', applyScale);
+})();
+</script>
 </body>
 </html>
